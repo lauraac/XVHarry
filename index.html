@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Mis XV • Invitación Mágica</title>
+  <meta name="description" content="Estás invitado a una noche mágica para celebrar mis XV." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mis XV • Invitación Mágica" />
+  <meta property="og:description" content="Acompáñame a celebrar mis XV en una noche inolvidable." />
+  <meta property="og:image" content="./img/preview-whatsapp.jpg" />
+  <meta property="og:url" content="https://tudominio.com/invitacion-xv" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mis XV • Invitación Mágica" />
+  <meta name="twitter:description" content="Acompáñame a celebrar mis XV en una noche inolvidable." />
+  <meta name="twitter:image" content="./img/preview-whatsapp.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- SOLO VERSION MOVIL -->
+  <div class="desktop-lock" id="desktopLock">
+    <div class="desktop-lock__card">
+      <div class="desktop-lock__spark">✦</div>
+      <h2>Esta invitación está diseñada para celular</h2>
+      <p>Abre este enlace desde tu teléfono para vivir la experiencia completa.</p>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro" id="intro">
+    <video id="introVideo" class="intro__video" playsinline webkit-playsinline preload="auto" autoplay muted>
+      <source src="./img/harry.mp4" type="video/mp4">
+    </video>
+
+    <div class="intro__overlay"></div>
+
+    <div class="intro__tap" id="tapToSound">
+      Toca para activar sonido ✦
+    </div>
+
+    <button class="intro__skip" id="skipIntro">Saltar</button>
+  </section>
+
+  <!-- INVITACION -->
+  <main class="site hidden" id="site">
+
+    <!-- Fondo principal oscuro -->
+    <div class="bg-main"></div>
+
+    <!-- Niebla / humo -->
+    <div class="fog fog-1"></div>
+    <div class="fog fog-2"></div>
+    <div class="fog fog-3"></div>
+
+    <!-- Nubes PNG transparentes opcionales -->
+    <img src="./nuve.png" alt="" class="cloud cloud-1" aria-hidden="true">
+    <img src="./nuve.png" alt="" class="cloud cloud-2" aria-hidden="true">
+    <img src="./nuve.png" alt="" class="cloud cloud-3" aria-hidden="true">
+
+    <!-- Harry volando -->
+    <img src="./img/harry.png" alt="Harry volando" id="floatingHarry" class="floating-harry">
+
+    <!-- HERO FOTO QUINCEAÑERA -->
+    <section class="hero-photo">
+      <div class="hero-photo__frame reveal">
+        <p class="hero-photo__pretitle">Mis XV</p>
+        <div class="media-frame media-frame--hero">
+          <img src="./img/imgPrincipal.png" alt="Quinceañera" class="media-img">
+        </div>
+
+        <div class="hero-photo__text">
+          <img src="./img/texto.png" alt="Mis XV" class="title-image">
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FRASE -->
+    <section class="intro-text reveal">
+      <div class="section-shell">
+        <p class="intro-text__quote">
+          Entre estrellas, velas y magia,
+          acompáñame a vivir una noche inolvidable.
+        </p>
+      </div>
+    </section>
+
+    <!-- FECHA -->
+    <section class="date-block reveal">
+      <div class="section-shell date-block__inner">
+        <span class="date-block__day">Sábado</span>
+        <strong class="date-block__date">21 de marzo de 2026</strong>
+        <small class="date-block__note">Fecha provisional</small>
+      </div>
+    </section>
+
+    <!-- BOTON PRINCIPAL -->
+    <section class="main-action reveal">
+      <div class="section-shell center">
+        <a href="#detalles" class="magic-button">
+          <span class="magic-button__label">Ver invitación</span>
+
+          <!-- ejemplo cuando uses imagen -->
+          <!-- <img src="./img/btn-ver-invitacion.png" alt="Ver invitación" class="magic-button__img"> -->
+        </a>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="countdown reveal">
+      <div class="section-shell">
+        <h3 class="section-title">La magia comienza en</h3>
+
+        <div class="countdown__grid">
+          <div class="countdown__box">
+            <span id="days">00</span>
+            <small>Días</small>
+          </div>
+          <div class="countdown__box">
+            <span id="hours">00</span>
+            <small>Horas</small>
+          </div>
+          <div class="countdown__box">
+            <span id="minutes">00</span>
+            <small>Min</small>
+          </div>
+          <div class="countdown__box">
+            <span id="seconds">00</span>
+            <small>Seg</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETALLES -->
+    <section class="details" id="detalles">
+      <div class="section-shell">
+        <h3 class="section-title reveal">Detalles del evento</h3>
+
+        <div class="detail-card reveal">
+          <div class="media-frame media-frame--card">
+            <img src="./img/iglesia.png" alt="Imagen de la misa" class="media-img">
+          </div>
+
+          <h4>Misa</h4>
+          <p><strong>Iglesia:</strong> Nombre de la iglesia</p>
+          <p><strong>Hora:</strong> 6:00 PM</p>
+          <p><strong>Dirección:</strong> Aquí irá la dirección</p>
+
+          <a href="#" class="magic-button magic-button--small">
+            <span class="magic-button__label">Ubicación misa</span>
+          </a>
+        </div>
+
+        <div class="detail-card reveal">
+          <div class="media-frame media-frame--card">
+            <img src="./img/comida.png" alt="Imagen del salón" class="media-img">
+          </div>
+
+          <h4>Recepción</h4>
+          <p><strong>Salón:</strong> Nombre del salón</p>
+          <p><strong>Hora:</strong> 8:00 PM</p>
+          <p><strong>Dirección:</strong> Aquí irá la dirección</p>
+
+          <a href="#" class="magic-button magic-button--small">
+            <span class="magic-button__label">Ubicación salón</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="gallery reveal">
+      <div class="section-shell">
+        <h3 class="section-title">Momentos mágicos</h3>
+
+        <div class="gallery__slider">
+          <div class="gallery__track" id="galleryTrack">
+            <div class="gallery__slide">
+              <div class="media-frame media-frame--gallery">
+                <img src="./img/img1.png" alt="Foto 1" class="media-img">
+              </div>
+            </div>
+
+            <div class="gallery__slide">
+              <div class="media-frame media-frame--gallery">
+                <img src="./img/img2.png" alt="Foto 2" class="media-img">
+              </div>
+            </div>
+
+            <div class="gallery__slide">
+              <div class="media-frame media-frame--gallery">
+                <img src="./img/img3.png" alt="Foto 3" class="media-img">
+              </div>
+            </div>
+
+            <div class="gallery__slide">
+              <div class="media-frame media-frame--gallery">
+                <img src="./img/img4.png" alt="Foto 3" class="media-img">
+              </div>
+            </div>
+
+            <div class="gallery__slide">
+              <div class="media-frame media-frame--gallery">
+                <img src="./img/img1.png" alt="Foto 3" class="media-img">
+              </div>
+            </div>
+          </div>
+
+          <button class="gallery__btn gallery__btn--prev" id="prevBtn">‹</button>
+          <button class="gallery__btn gallery__btn--next" id="nextBtn">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIFS / IMAGENES -->
+    <section class="extras reveal">
+      <div class="section-shell">
+        <h3 class="section-title">Espacios para GIFs e imágenes</h3>
+
+        <div class="extras__grid">
+          <div class="media-frame media-frame--extra">
+            <img src="./img/img.gif" alt="GIF mágico" class="media-img media-img--contain">
+          </div>
+
+          <div class="media-frame media-frame--extra">
+            <img src="./img/imgFinal.png" alt="Imagen decorativa" class="media-img media-img--contain">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp reveal">
+      <div class="section-shell">
+        <h3 class="section-title">Confirmación</h3>
+        <p class="rsvp__text">
+          Tu presencia hará esta noche aún más especial.
+        </p>
+
+        <div class="rsvp__actions">
+          <a href="#" class="magic-button">
+            <span class="magic-button__label">Confirmar asistencia</span>
+          </a>
+
+          <a href="#" class="magic-button magic-button--ghost">
+            <span class="magic-button__label">Enviar mensaje</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer reveal">
+      <p>Una noche llena de magia ✦</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
