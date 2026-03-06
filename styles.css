@@ -441,10 +441,10 @@ a {
   content: "";
   position: absolute;
   inset: -40%;
-  background: radial-gradient(
-    circle,
-    rgba(214, 178, 122, 0.12),
-    transparent 55%
+  background: linear-gradient(
+    180deg,
+    rgba(40, 35, 30, 0.95),
+    rgba(10, 10, 12, 0.95)
   );
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -699,6 +699,50 @@ a {
 .music-toggle.hidden {
   display: none;
 }
+.magic-button {
+  position: relative;
+  overflow: hidden;
+}
+
+/* brillo mágico que pasa */
+.magic-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* aparece el brillo */
+.magic-button:hover::after {
+  animation: magicShine 1.2s ease;
+}
+
+@keyframes magicShine {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateX(100%) rotate(25deg);
+    opacity: 0;
+  }
+}
 /* animaciones */
 @keyframes pulseSoft {
   0%,
@@ -774,7 +818,19 @@ a {
     opacity: 0.06;
   }
 }
+.magic-button {
+  box-shadow:
+    0 0 0 1px rgba(214, 178, 122, 0.25),
+    0 0 8px rgba(214, 178, 122, 0.15),
+    0 0 18px rgba(214, 178, 122, 0.08);
+}
 
+.magic-button:hover {
+  box-shadow:
+    0 0 0 1px rgba(214, 178, 122, 0.35),
+    0 0 12px rgba(214, 178, 122, 0.25),
+    0 0 26px rgba(214, 178, 122, 0.18);
+}
 @media (min-width: 769px) {
   .desktop-lock {
     display: flex;
@@ -783,5 +839,32 @@ a {
   .intro,
   .site {
     display: none !important;
+  }
+}
+
+.magic-button::before {
+  content: "✨";
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 12px;
+  opacity: 0.7;
+  animation: sparkle 2.2s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.8) rotate(360deg);
+    opacity: 0.3;
   }
 }
