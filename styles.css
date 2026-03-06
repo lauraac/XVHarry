@@ -659,6 +659,46 @@ a {
   max-width: 88%;
   margin: 0 auto;
 }
+.music-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(214, 178, 122, 0.28);
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 24, 0.94),
+    rgba(8, 8, 12, 0.96)
+  );
+  color: #f8ecdc;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+  cursor: pointer;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(214, 178, 122, 0.08);
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.55),
+    0 0 22px rgba(214, 178, 122, 0.14);
+}
+
+.music-toggle.hidden {
+  display: none;
+}
 /* animaciones */
 @keyframes pulseSoft {
   0%,

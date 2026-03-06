@@ -4,16 +4,55 @@ const skipIntro = document.getElementById("skipIntro");
 const tapToSound = document.getElementById("tapToSound");
 const site = document.getElementById("site");
 const floatingHarry = document.getElementById("floatingHarry");
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
 
 // =========================
 // INTRO VIDEO
 // =========================
 let soundEnabled = false;
 let introDone = false;
+let musicStarted = false;
+
+function startBackgroundMusic() {
+  if (!bgMusic || musicStarted) return;
+
+  bgMusic.currentTime = 0;
+  bgMusic.volume = 0.7;
+
+  bgMusic
+    .play()
+    .then(() => {
+      musicStarted = true;
+
+      if (musicToggle) {
+        musicToggle.classList.remove("hidden");
+        musicToggle.textContent = "❚❚";
+        musicToggle.setAttribute("aria-label", "Pausar música");
+      }
+    })
+    .catch(() => {
+      if (musicToggle) {
+        musicToggle.classList.remove("hidden");
+        musicToggle.textContent = "▶";
+        musicToggle.setAttribute("aria-label", "Reproducir música");
+      }
+    });
+}
+
+function stopIntroVideoAudio() {
+  if (!introVideo) return;
+
+  introVideo.pause();
+  introVideo.muted = true;
+  introVideo.currentTime = introVideo.currentTime || 0;
+}
 
 function showSite() {
   if (introDone) return;
   introDone = true;
+
+  stopIntroVideoAudio();
 
   intro.style.opacity = "0";
   intro.style.pointerEvents = "none";
@@ -24,11 +63,12 @@ function showSite() {
     window.scrollTo(0, 0);
     initReveal();
     initHarryFlight();
+    startBackgroundMusic();
   }, 700);
 }
 
 function enableSoundOnce() {
-  if (soundEnabled) return;
+  if (soundEnabled || !introVideo) return;
   soundEnabled = true;
 
   introVideo.muted = false;
@@ -52,6 +92,23 @@ if (intro) {
   intro.addEventListener("touchstart", enableSoundOnce, { passive: true });
 }
 
+if (musicToggle && bgMusic) {
+  musicToggle.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic
+        .play()
+        .then(() => {
+          musicToggle.textContent = "❚❚";
+          musicToggle.setAttribute("aria-label", "Pausar música");
+        })
+        .catch(() => {});
+    } else {
+      bgMusic.pause();
+      musicToggle.textContent = "▶";
+      musicToggle.setAttribute("aria-label", "Reproducir música");
+    }
+  });
+}
 // =========================
 // REVEAL
 // =========================
