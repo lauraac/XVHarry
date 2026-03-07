@@ -921,3 +921,160 @@ a {
     left: 120%;
   }
 }
+
+/* =========================
+   MENSAJES / GUESTBOOK
+========================= */
+.guestbook {
+  padding: 24px 0 10px;
+}
+
+.guestbook__text,
+.photo-share__text {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.guestbook-form {
+  padding: 18px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  color: #f1e3cd;
+  font-family: "Cinzel", serif;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid rgba(214, 178, 122, 0.18);
+  background: rgba(8, 8, 11, 0.88);
+  color: var(--text);
+  border-radius: 18px;
+  padding: 14px 16px;
+  outline: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(247, 240, 231, 0.45);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: rgba(214, 178, 122, 0.45);
+  box-shadow: 0 0 0 3px rgba(214, 178, 122, 0.08);
+}
+
+.guestbook-status {
+  margin-top: 12px;
+  text-align: center;
+  color: #ead7b7;
+  min-height: 20px;
+  font-size: 0.98rem;
+}
+
+.messages-board {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.message-card {
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(10, 11, 14, 0.82);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.message-card h4 {
+  font-family: "Cinzel", serif;
+  color: #f7e6cb;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.message-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.message-card--empty p {
+  text-align: center;
+  color: var(--muted);
+}
+
+/* =========================
+   COMPARTIR FOTOS
+========================= */
+.photo-share {
+  padding: 24px 0 10px;
+}
+
+.photo-share__card {
+  padding: 22px 18px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.photo-share__note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.invitation-credit {
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: 0.55;
+  text-align: center;
+  color: #cbbda5;
+  letter-spacing: 0.5px;
+}
+
+.invitation-credit a {
+  color: #cbbda5;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(214, 178, 122, 0.4);
+}
+
+.invitation-credit a:hover {
+  opacity: 0.9;
+}
+
+.event-contact {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.event-contact p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}

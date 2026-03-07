@@ -137,7 +137,7 @@ const hours = document.getElementById("hours");
 const minutes = document.getElementById("minutes");
 const seconds = document.getElementById("seconds");
 
-const eventDate = new Date("2026-03-21T20:00:00");
+const eventDate = new Date("2026-03-07T20:00:00");
 
 function updateCountdown() {
   const now = new Date().getTime();
@@ -255,3 +255,117 @@ setInterval(() => {
   current = (current + 1) % slides.length;
   updateSlider();
 }, 5000);
+
+// =========================
+// MENSAJES DEL EVENTO
+// =========================
+const guestbookForm = document.getElementById("guestbookForm");
+const guestName = document.getElementById("guestName");
+const guestMessage = document.getElementById("guestMessage");
+const guestbookStatus = document.getElementById("guestbookStatus");
+const messagesBoard = document.getElementById("messagesBoard");
+const photoShareButton = document.getElementById("photoShareButton");
+
+// Cambia este valor cuando conectes Drive:
+const PHOTO_SHARE_URL = "#";
+
+// Si ya tienes enlace real de Drive, se coloca aquí automáticamente
+if (photoShareButton && PHOTO_SHARE_URL !== "#") {
+  photoShareButton.href = PHOTO_SHARE_URL;
+}
+
+if (photoShareButton && PHOTO_SHARE_URL === "#") {
+  photoShareButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert(
+      "Aquí irá el enlace para compartir fotos cuando lo conectemos con Drive.",
+    );
+  });
+}
+
+function getSavedMessages() {
+  try {
+    return JSON.parse(localStorage.getItem("xv_guest_messages")) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveMessages(messages) {
+  localStorage.setItem("xv_guest_messages", JSON.stringify(messages));
+}
+
+function escapeHTML(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function renderMessages() {
+  if (!messagesBoard) return;
+
+  const messages = getSavedMessages();
+
+  if (!messages.length) {
+    messagesBoard.innerHTML = `
+      <div class="message-card message-card--empty">
+        <p>Aún no hay mensajes. Sé la primera persona en dejar unas palabras bonitas ✨</p>
+      </div>
+    `;
+    return;
+  }
+
+  messagesBoard.innerHTML = messages
+    .slice()
+    .reverse()
+    .map((item) => {
+      return `
+        <article class="message-card">
+          <h4>${escapeHTML(item.name)}</h4>
+          <p>${escapeHTML(item.message)}</p>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+if (guestbookForm) {
+  guestbookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = guestName.value.trim();
+    const message = guestMessage.value.trim();
+
+    if (!name || !message) {
+      if (guestbookStatus) {
+        guestbookStatus.textContent =
+          "Por favor completa tu nombre y tu mensaje.";
+      }
+      return;
+    }
+
+    const messages = getSavedMessages();
+    messages.push({
+      name,
+      message,
+      createdAt: new Date().toISOString(),
+    });
+
+    saveMessages(messages);
+    renderMessages();
+
+    guestbookForm.reset();
+
+    if (guestbookStatus) {
+      guestbookStatus.textContent = "Tu mensaje se guardó correctamente ✨";
+    }
+
+    setTimeout(() => {
+      if (guestbookStatus) {
+        guestbookStatus.textContent = "";
+      }
+    }, 3000);
+  });
+}
+
+renderMessages();
