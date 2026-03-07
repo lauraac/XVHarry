@@ -79,8 +79,21 @@ function enableSoundOnce() {
 }
 
 if (introVideo) {
-  introVideo.play().catch(() => {});
+  introVideo.muted = true;
+  introVideo.setAttribute("muted", "");
+  introVideo.setAttribute("playsinline", "");
+  introVideo.setAttribute("webkit-playsinline", "");
+
+  introVideo.play().catch(() => {
+    console.log("Autoplay bloqueado");
+  });
+
   introVideo.addEventListener("ended", showSite);
+
+  introVideo.addEventListener("error", () => {
+    console.log("Error al cargar video");
+    showSite();
+  });
 }
 
 if (skipIntro) {
