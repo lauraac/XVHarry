@@ -67,15 +67,8 @@ function showSite() {
   }, 700);
 }
 
-function enableSoundOnce() {
-  if (soundEnabled || !introVideo) return;
-  soundEnabled = true;
-
-  introVideo.muted = false;
-  introVideo.volume = 1;
-  introVideo.play().catch(() => {});
-
-  if (tapToSound) tapToSound.style.display = "none";
+if (intro) {
+  intro.addEventListener("click", enableSoundOnce);
 }
 
 if (introVideo) {
@@ -102,9 +95,7 @@ if (skipIntro) {
 
 if (intro) {
   intro.addEventListener("click", enableSoundOnce);
-  intro.addEventListener("touchstart", enableSoundOnce, { passive: true });
 }
-
 if (musicToggle && bgMusic) {
   musicToggle.addEventListener("click", () => {
     if (bgMusic.paused) {
