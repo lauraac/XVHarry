@@ -1078,3 +1078,29 @@ a {
   color: var(--muted);
   margin-bottom: 8px;
 }
+
+.gift-table {
+  padding: 24px 0 10px;
+}
+
+.gift-card {
+  padding: 20px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.gift-text {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.gift-number {
+  font-size: 1.1rem;
+  color: #f1e3cd;
+  margin-bottom: 16px;
+}
