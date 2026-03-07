@@ -86,7 +86,14 @@ async function enableSoundOnce(e) {
     setTimeout(() => {
       if (!introDone && introVideo.paused) {
         introVideo.currentTime = currentTime;
-        introVideo.play().catch(() => {});
+
+        introVideo.play().catch(() => {
+          setTimeout(() => {
+            if (!introDone && introVideo.paused) {
+              introVideo.play().catch(() => {});
+            }
+          }, 180);
+        });
       }
     }, 120);
   } catch (error) {
@@ -115,9 +122,11 @@ if (introVideo) {
 }
 
 if (skipIntro) {
-  skipIntro.addEventListener("click", showSite);
+  skipIntro.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showSite();
+  });
 }
-
 if (intro) {
   intro.addEventListener("click", enableSoundOnce);
 }
