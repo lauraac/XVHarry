@@ -66,9 +66,34 @@ function showSite() {
     startBackgroundMusic();
   }, 700);
 }
+async function enableSoundOnce(e) {
+  if (soundEnabled || !introVideo) return;
 
-if (intro) {
-  intro.addEventListener("click", enableSoundOnce);
+  // evita que tocar "Saltar" active también el sonido
+  if (e && (e.target === skipIntro || skipIntro?.contains(e.target))) return;
+
+  soundEnabled = true;
+
+  try {
+    const currentTime = introVideo.currentTime || 0;
+
+    introVideo.muted = false;
+    introVideo.volume = 1;
+
+    await introVideo.play();
+
+    // respaldo para Android si se pausa al quitar mute
+    setTimeout(() => {
+      if (!introDone && introVideo.paused) {
+        introVideo.currentTime = currentTime;
+        introVideo.play().catch(() => {});
+      }
+    }, 120);
+  } catch (error) {
+    console.log("No se pudo activar el audio:", error);
+  }
+
+  if (tapToSound) tapToSound.style.display = "none";
 }
 
 if (introVideo) {
