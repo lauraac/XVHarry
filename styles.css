@@ -1193,3 +1193,49 @@ a {
   height: auto;
   display: block;
 }
+
+/* =========================
+   QR MESA DE REGALOS
+========================= */
+
+.gift-card--qr {
+  padding: 26px 20px;
+}
+
+.gift-qr-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.gift-name {
+  font-family: "Cinzel", serif;
+  font-size: 1.25rem;
+  color: #f1e3cd;
+  margin-bottom: 6px;
+}
+
+.gift-invite {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.gift-qr {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 18px 0;
+}
+
+.gift-qr img {
+  width: 220px;
+  max-width: 100%;
+  border-radius: 14px;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+.gift-number {
+  text-align: center;
+  margin-bottom: 14px;
+  color: var(--muted);
+}

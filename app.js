@@ -303,6 +303,8 @@ const guestMessage = document.getElementById("guestMessage");
 const guestbookStatus = document.getElementById("guestbookStatus");
 const messagesBoard = document.getElementById("messagesBoard");
 const photoShareButton = document.getElementById("photoShareButton");
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyvHUeMBrLCx7bwnOr6dBPuEh3eekUqpdhrFNXhe4JjkUvKeGdUJDh-r-ahXUcNurwHug/exec";
 
 // Cambia este valor cuando conectes Drive:
 const PHOTO_SHARE_URL = "#";
@@ -368,7 +370,7 @@ function renderMessages() {
 }
 
 if (guestbookForm) {
-  guestbookForm.addEventListener("submit", (e) => {
+  guestbookForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = guestName.value.trim();
@@ -382,20 +384,49 @@ if (guestbookForm) {
       return;
     }
 
-    const messages = getSavedMessages();
-    messages.push({
-      name,
-      message,
-      createdAt: new Date().toISOString(),
-    });
-
-    saveMessages(messages);
-    renderMessages();
-
-    guestbookForm.reset();
-
     if (guestbookStatus) {
-      guestbookStatus.textContent = "Tu mensaje se guardó correctamente ✨";
+      guestbookStatus.textContent = "Enviando mensaje...";
+    }
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify({
+          name,
+          message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.ok) {
+        const messages = getSavedMessages();
+        messages.push({
+          name,
+          message,
+          createdAt: new Date().toISOString(),
+        });
+
+        saveMessages(messages);
+        renderMessages();
+        guestbookForm.reset();
+
+        if (guestbookStatus) {
+          guestbookStatus.textContent = "Tu mensaje se guardó correctamente ✨";
+        }
+      } else {
+        if (guestbookStatus) {
+          guestbookStatus.textContent = "No se pudo guardar el mensaje.";
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      if (guestbookStatus) {
+        guestbookStatus.textContent = "Ocurrió un error al enviar el mensaje.";
+      }
     }
 
     setTimeout(() => {
