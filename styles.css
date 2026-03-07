@@ -1112,7 +1112,7 @@ a {
 }
 
 .gift-logo img {
-  width: 120px;
+  width: 160px;
   opacity: 0.95;
 }
 
@@ -1140,4 +1140,55 @@ a {
   font-size: 1.1rem;
   color: #f1e3cd;
   margin-bottom: 16px;
+}
+
+.gift-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.gift-logo img {
+  max-width: 140px;
+  height: auto;
+  display: block;
+}
+
+.gift-card {
+  padding: 20px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.gift-text {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.gift-number {
+  font-size: 1.05rem;
+  color: #f1e3cd;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.gift-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.gift-logo img {
+  max-width: 140px;
+  height: auto;
+  display: block;
 }
