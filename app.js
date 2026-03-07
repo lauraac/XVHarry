@@ -303,24 +303,65 @@ const guestMessage = document.getElementById("guestMessage");
 const guestbookStatus = document.getElementById("guestbookStatus");
 const messagesBoard = document.getElementById("messagesBoard");
 const photoShareButton = document.getElementById("photoShareButton");
+const photoInput = document.getElementById("photoInput");
+const photoStatus = document.getElementById("photoStatus");
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyvHUeMBrLCx7bwnOr6dBPuEh3eekUqpdhrFNXhe4JjkUvKeGdUJDh-r-ahXUcNurwHug/exec";
-
+const PHOTO_UPLOAD_URL =
+  "https://script.google.com/macros/s/AKfycbxb6_UVYLtlgNL-dgsESRzZOpAZpDFANGehJrfxivKCuxMdIJ9cnoIpBUCvHXnCN4Mz/exec";
 // Cambia este valor cuando conectes Drive:
 const PHOTO_SHARE_URL = "#";
 
+if (photoShareButton && photoInput) {
+  photoShareButton.addEventListener("click", () => {
+    photoInput.click();
+  });
+
+  photoInput.addEventListener("change", async () => {
+    const file = photoInput.files[0];
+
+    if (!file) return;
+
+    photoStatus.textContent = "Subiendo foto...";
+
+    const reader = new FileReader();
+
+    reader.onload = async function () {
+      const base64 = reader.result.split(",")[1];
+
+      try {
+        const response = await fetch(PHOTO_UPLOAD_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify({
+            image: base64,
+            filename: file.name,
+            mimeType: file.type,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (result.ok) {
+          photoStatus.textContent = "Foto subida correctamente 📸";
+          photoInput.value = "";
+        } else {
+          photoStatus.textContent = "Error al subir la foto";
+        }
+      } catch (error) {
+        console.error(error);
+        photoStatus.textContent = "Error de conexión";
+      }
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
 // Si ya tienes enlace real de Drive, se coloca aquí automáticamente
 if (photoShareButton && PHOTO_SHARE_URL !== "#") {
   photoShareButton.href = PHOTO_SHARE_URL;
-}
-
-if (photoShareButton && PHOTO_SHARE_URL === "#") {
-  photoShareButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert(
-      "Aquí irá el enlace para compartir fotos cuando lo conectemos con Drive.",
-    );
-  });
 }
 
 function getSavedMessages() {
